@@ -8,6 +8,8 @@
 library(tidytuesdayR)
 library(tidyverse)
 library(modeest)
+library(sentimentr)
+
 # Helper Functions --------------------------------------------------------
 mypng <- function(x
                   , type='cairo-png'
@@ -57,3 +59,23 @@ nw_dat %>%
   geom_jitter(width = 0.1) +
   scale_x_continuous(breaks = seq(1,10,1)) +
   ggrepel::geom_label_repel(aes(label=obstacle_name))
+
+mypng('ninja_warrior_sentiment.png')
+nw_dat %>% 
+  distinct(obstacle_name) %>% 
+  mutate(obstacle_sentiment = sentiment(obstacle_name)$sentiment) %>% 
+  filter(obstacle_sentiment != 0) %>% 
+  mutate(sentiment_sign = ifelse(obstacle_sentiment>0, 'positive', 'negative')) %>% 
+  ggplot(aes(y=fct_reorder(obstacle_name, obstacle_sentiment), x = obstacle_sentiment)) +
+  geom_linerange(aes(xmin=0,xmax=obstacle_sentiment, color=sentiment_sign), lwd=1.5) +
+  geom_point(aes(color=sentiment_sign), size = 4, alpha=0.7) +
+  scale_color_manual(values=c('positive'='darkgreen', 'negative'='red')) +
+  theme_minimal() +
+  labs(x='obstacale name sentiment',
+       y='',
+       title='Sentiment of Ninja Warrior Obstacle Names',
+       color='') +
+  theme(plot.title.position = 'plot',
+        text = element_text(size=16),
+        panel.grid.minor = element_blank())
+dev.off()
