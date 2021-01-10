@@ -303,6 +303,13 @@
       "Repository": "CRAN",
       "Hash": "729026083340f1076e622886c5b337b7"
     },
+    "gghighlight": {
+      "Package": "gghighlight",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "dd86be13e7823cd6de373b066f5f13b2"
+    },
     "ggplot2": {
       "Package": "ggplot2",
       "Version": "3.3.2",
@@ -711,10 +718,10 @@
     },
     "rprojroot": {
       "Package": "rprojroot",
-      "Version": "1.3-2",
+      "Version": "2.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "f6a407ae5dd21f6f80a6708bbb6eb3ae"
+      "Hash": "249d8cd1e74a8f6a26194a91b47f21d1"
     },
     "rstudioapi": {
       "Package": "rstudioapi",
